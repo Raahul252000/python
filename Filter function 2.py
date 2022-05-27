@@ -26,3 +26,31 @@ ages = [12,67,45,17,21,14,89,76,7]
 adults = list(filter(lambda x: x>18,ages))
 print(adults)
 
+# Example 5: one function can be returned from another function with bracket '()' also.
+
+                        # returning function without bracket
+def outer():
+    x = 3
+    def inner():
+        y = 5
+        result = x+y
+        return result
+    return inner
+
+x = outer()
+print(type(x))
+print(x())
+
+
+                          # returning function with bracket
+def outer():
+    x = 3
+    def inner():
+        y = 5
+        result = x+y
+        return result
+    return inner()
+
+y = outer()
+print(y)
+print(type(y))
