@@ -1,36 +1,36 @@
 """
 Protected Access Modifier:
-The members of a class that are declared protected are only accessible to a class derived from it. Data members
+The members of a class that are declared protected are only accessible from within the base class and from derived class. Data members
 of a class are declared protected by adding a single underscore ‘_’ symbol before the data member of that class.
 
-Private Access Modifier:
-The members of a class that are declared private are accessible within the class only, private access modifier is
-the most secure access modifier. Data members of a class are declared private by adding a double underscore ‘__’ symbol
-before the data member of that class.
 """
+# protected class
 
-class Employee:
-    no_of_leaves = 6
-    _protec = 456
-    __privat = "this is private variable."
+class automobile:
+    _headlights = 2
+    def __init__(self,doors,wheels,engine):
+        self._doors = doors
+        self._wheels = wheels
+        self._engine = engine
 
-    def __init__(self,name,age,salary,role):
-        self.Name = name
-        self.age = age
-        self.salary = salary
-        self.role = role
+tata = automobile(2,6,"petrol")
+print(tata._wheels)
+print(tata._engine)              # protected variable can be accessed within from base class.
+tata._wheels = 12                # Protected variable can be modified from the base class.
+print(tata._wheels)
+class car(automobile):
+    def __init__(self,doors,windows,wheels,engine,horsepower):
+        super().__init__(doors,wheels,engine)
+        self._windows = windows
+        self._horsepower = horsepower
 
-    def printdetails(self):
-        return f"Name is {self.Name},Age is {self.age}, Salary is {self.salary} and role is {self.role}"
+audi = car(4,4,4,"diesel",899)
 
-    @classmethod
-    def change_leaves(cls,newleaves):
-        cls.no_of_leaves = newleaves
+print(audi._windows)
+print(audi._doors)                      # protected var can be used from the inherited/sub-class as well.
+print(audi._engine)
+print(audi._wheels)
+print(audi._horsepower)
 
-    @classmethod
-    def obj_from_str(cls,string):
-        return cls(*string.split("-"))
-
-ram = Employee("Ram Kumar",34,"56k","assistance")
-print(ram._protec)              # accessing the protected class.
-print(ram._Employee__privat)    # this is how we can access the private variables.
+audi._wheels  = 6
+print(audi._wheels)                     # protected var can be modified as well from the inherited/sub_class.
