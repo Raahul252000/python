@@ -1,33 +1,35 @@
-class Employe:
-    def __init__(self,fname,lname,salary):
-        self.fname = fname
-        self.lname = lname
-        self.salary = salary
-    def explain(self):
-        return f" This Employe is {self.fname} {self.lname} and his salary is {self.salary}"
+"""
+@property is a decorator which means a function can be treated as an attribute. like we can access the method like an attribute
+without parenthesis.
 
-    @property        # @property is a decorator which means a function can be deal as a attribute.
-    def printemail(self):
-        return f"{self.fname}.{self.lname}@gmail.com"
+"""
+# Example 1:
+class employe:
+    def __init__(self,fname,lname):
+        self.firstname = fname
+        self.lastname = lname
 
-    @printemail.setter
-    def printemail(self,given_email):
-        name_list = given_email.split("@")[0].split(".")     #split function returns the list of string.
-        self.fname = name_list[0]    # here we are extracting the fname and lame from the given email and setting the email.
-        self.lname = name_list[1]
+    @property       # this is getter.
+    def get_email(self):               # because of @property deco, now get_email can be accessed as an attribute but cannot be set like an attribute.
+        return self.firstname + "." + self.lastname + "@gmail.com"
 
-# here printemail() was a function earlier but after using @property, printemail started behaving like an attribute and
-# using @printemail.setter,we can directly set the email in the printemail like any other variable.
+    @get_email.setter              # with the help of setter we can set the method get_email like an attribute.
+    def get_email(self,email):
+        list1 = email.split("@")[0].split(".")
+        self.firstname = list1[0]
+        self.lastname = list1[1]
 
+aman = employe("aman","gupta")
 
-rohan = Employe("Rohan","Yadav",450)
-amit = Employe("Amit","Sharma",500)
+print(aman.firstname)
+print(aman.lastname)
+print(aman.get_email)
 
-amit.lname = "khanna"
-print(amit.printemail)
-print(rohan.printemail)
-print(amit.lname)
-rohan.printemail = "Rohan.dubey@gmail.com"
-print(rohan.lname)
-print(rohan.printemail)
-print(rohan.explain())
+aman.firstname = "vicky"
+print(aman.get_email)
+
+aman.get_email = "chota.don@gmail.com"
+
+print(aman.get_email)
+print(aman.firstname)
+print(aman.lastname)

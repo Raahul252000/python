@@ -1,44 +1,28 @@
-class Students:
-    def __init__(self,fname,lname):
-        self.firstname = fname
-        self.lastname = lname
-        # self.email = f"{self.fistname}.{self.lastname}@gmail.com"
+# Example 2:
+class Student:
+    def __init__(self,marks):
+        self.__marks = marks
 
-    def explain(self):
-        return f"The name of the student is {self.firstname} {self.lastname}."
+    def get_percent(self):
+        return (self.__marks/600) * 100
+
     @property
-    def email(self):
-        if self.firstname == None or self.lastname == None:
-            return "Email is not set."
+    def marks(self):
+        return f"The marks is {self.__marks}"
+
+    @marks.setter
+    def marks(self,value):
+        if value < 0 or value > 600:
+            print("can't set your value.")
         else:
-            return f"{self.firstname}.{self.lastname}@gmail.com"
+            print(f"marks is set to {value}")
+            self.__marks = value
 
-    @email.setter
-    def email(self,string):
-        names = string.split("@")[0]       # split() will written the list.
-        self.firstname = names.split(".")[0]
-        self.lastname = names.split(".")[1]
+karan = Student(435)
+print(karan.get_percent())
+print(karan.marks)
 
-    @email.deleter
-    def email(self):
-        self.firstname = None
-        self.lastname = None
+karan.marks = 550
+print(karan.get_percent())
+print(karan.marks)
 
-
-anurag = Students("Anurag","Tripathi")
-ankita = Students("Ankita","Asthana")
-tina = Students("Tina","Rai")
-print(ankita.email)
-
-ankita.lastname = "lokhande"
-print(ankita.email)
-ankita.email = "thisisankita.sharma@gmail.com"
-print(ankita.email)
-print(ankita.lastname)
-
-del ankita.email
-print(ankita.email)
-print(anurag.explain())
-print(tina.email)
-print(tina.firstname)
-print(tina.lastname)
