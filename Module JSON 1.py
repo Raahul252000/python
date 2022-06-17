@@ -10,10 +10,10 @@ If you have a JSON string, you can parse it by using the json.loads() method.
 The result will be a Python dictionary.
 """
 import json
-mydata = '{"name":"rahul","gender":"male"}'
+mydata = '{"name":"rahul","gender":"male"}'         # JSON string.
 print(type(mydata))
 
-parsed = json.loads(mydata)        # we can parsed the json string using load function. this will convert the string into dictionary.
+parsed = json.loads(mydata)        # we can parse the json string using loads() function. this will convert the string into dictionary.
 print(parsed)
 print(type(parsed))
 print(parsed["name"])
@@ -52,5 +52,3 @@ print(jsn)
 f = open("my intro.json")
 data = json.load(f)
 print(f)
-
-
